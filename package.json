@@ -4,12 +4,13 @@
   "description": "红包雨canvas版",
   "main": "index.js",
   "scripts": {
-    "start":"./node_modules/.bin/anywhere",
+    "start":"anywhere",
+    "watch":"livereload",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/superNever/weddingPresent-lastest.git"
+    "url": "git+ssh://git@github.com/runningdoubi/weddingPresent-lastest.git"
   },
   "keywords": [
     "wedding-Present",
@@ -19,10 +20,11 @@
   "author": "supernever",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/superNever/weddingPresent-lastest/issues"
+    "url": "https://github.com/runningdoubi/weddingPresent-lastest/issues"
   },
-  "homepage": "https://github.com/superNever/weddingPresent-lastest#readme",
+  "homepage": "https://github.com/runningdoubi/weddingPresent-lastest#readme",
   "devDependencies": {
-    "anywhere": "^1.4.0"
+    "anywhere": "^1.4.0",
+    "livereload": "^0.7.0"
   }
 }

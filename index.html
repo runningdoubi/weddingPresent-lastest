@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class = "hiddenAll">
+<html lang="en" class="hiddenAll">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <mete name="referrer" content="always">
     <title></title>
     <link rel="stylesheet" href="">
     <script src="main.js"></script>
@@ -11,13 +14,14 @@
             padding: 0;
             margin: 0;
         }
-        .hiddenAll{
+
+        .hiddenAll {
             overflow: hidden;
         }
+
         #controls {
             border: 1px solid #999;
             width: 150px;
-            height: 48px;
             position: absolute;
             left: 20px;
             top: 20px;
@@ -44,49 +48,56 @@
         }
     </style>
 </head>
+
 <body>
     <script>
-        window.onload = function(e){
-            
+        window.onload = function (e) {
             //获取当前浏览器的宽高
             var width_height = e.currentTarget.window.screen;
 
             //未点击红包的效果图
-            var imageOrigin = ['./images/im-hb.png','./images/im-hb0.png'];
+            var imageOrigin = ['./images/im-hb.png', './images/im-hb0.png'];
             //点击之后效果图
-            var imageClickArr =['./images/im-hb1.png','./images/im-hb2.png','./images/im-hb3.png','./images/im-hb4.png','./images/im-hb5.png'];
+            var imageClickArr = ['./images/im-hb1.png', './images/im-hb2.png', './images/im-hb3.png', './images/im-hb4.png', './images/im-hb5.png'];
 
             //用于分配点击红包切换图片的信息
             var arr = [];
             for (var i = 0; i < 500; i++) {
                 var obj = {};
-                obj.rewards = i%2==0?true:false;
-                obj.grade = i%(imageClickArr.length);
-                arr.push(obj);        
+                obj.rewards = i % 2 == 0 ? true : false;
+                obj.grade = i % (imageClickArr.length);
+                arr.push(obj);
             };
             //红包整体属性
             var opts = {
-                WIDTH:width_height.availWidth,
-                HEIGHT:width_height.availHeight,
-                wpWidth:150,
-                wpHeight:150,
-                wpCount:8,
-                rewardsInfo:arr,
-                wpY:350,   //每秒移动350像素
-                wpX:320,
-                delayTime:10,
-                imageOrigin:imageOrigin,
-                imageClickArr:imageClickArr
+                WIDTH: width_height.availWidth || width_height.height,
+                HEIGHT: width_height.availHeight || width_height.width,
+                wpWidth: 150,
+                wpHeight: 150,
+                wpCount: 500,
+                rewardsInfo: arr,
+                wpY: 250,   //每秒移动350像素
+                wpX: 320,
+                direction: 'top',
+                delayTime: 9999,
+                imageOrigin: imageOrigin,
+                imageClickArr: imageClickArr,
+                debuggerPanel: true
             }
+            var wp = null;
             //回调函数
-            function alertHello(num){
-                alert(num);
+            function alertHello(num) {
+                var result = window.confirm('点了' + num + '个红包，继续？');
+                if (result) {
+                    window.location.reload();
+                }
             }
             //实例红包并初始化
-            var wp = new weddingPresent('canvas',opts,alertHello);
+            wp = new weddingPresent('canvas', opts, alertHello);
             wp.init();
         }
-        
+
     </script>
 </body>
+
 </html>
